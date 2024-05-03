@@ -409,7 +409,11 @@ int main(void) {
     char command[20];
     while (1) {
         printf("Enter command: ");
-        scanf("%s", command);
+        if (scanf("%s", command) < 0) {
+            printf("\n");
+            list_destroy(list, 1);
+            return 0;
+        }
         if (!(strcmp(command, "create"))) {
             handle_create(list);
         } else if (!(strcmp(command, "remove"))) {
